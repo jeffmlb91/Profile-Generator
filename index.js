@@ -43,6 +43,32 @@ function initializeQuestion() {
                     }
                 },
             },
-
+            {
+                type: "input",
+                name: "numeroBureau",
+                message: "Provide a number for the office",
+                confirm: (numeroBureau) => {
+                    if (isNaN(numeroBureau)) {
+                        return "A Valid number for the office must be provided";
+                    } else {
+                        return true;
+                    }
+                },
+            },
+            {
+                type: "list",
+                message: "Please chose a role for the user",
+                name: "roleForUser",
+                choices: ["Engineer", "Manager", "intern"]
+            },
         ])
+        .then((response) => {
+            let GeneratedManager = new manager(
+                response.name,
+                response.idNum,
+                response.email,
+                response.numeroBureau
+            );
+            manager.push(GeneratedManager);
+        })
 }
