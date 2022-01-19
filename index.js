@@ -19,6 +19,30 @@ function initializeQuestion() {
                     }
                 },   
             },
-            
+            {
+                type: "input",
+                name: "idNum",
+                message: "Provide an ID number for the employee",
+                confirm: (idNum) => {
+                    if (idNum === null) {
+                        return "An ID number must be entered";
+                    } else {
+                        return true; 
+                    }
+                },
+            },
+            {
+                type: "input",
+                name: "email",
+                message: "Provide an email address for the employee",
+                confirm: (email) => {
+                    if (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+                        return true;
+                    } else {
+                        return "An email address must be entered"
+                    }
+                },
+            },
+
         ])
 }
