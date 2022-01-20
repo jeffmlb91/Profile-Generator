@@ -229,7 +229,7 @@ function memberCategory(createdMember) {
 }
 
 function producePrompt(manager, intern, engineer) {
-    file.writeFile("./dist/teamview.html", viewresult(manager, intern, engineer), "utf-8", (err) => {
+    file.writeFile("./dist/viewteam.html", viewresult(manager, intern, engineer), "utf-8", (err) => {
         if (err) {
             return err;
         }
