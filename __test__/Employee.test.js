@@ -25,5 +25,5 @@ test('try obtainEmail', () => {
 
 test('try obtainRole', () => {
     const emp = new Employee('trialName',2, 'trialEmail');
-    expect(emp.obtainRole()).toEqual(expect.any("Employee"));
+    expect(emp.obtainRole()).toEqual("Employee");
 })

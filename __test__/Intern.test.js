@@ -33,5 +33,5 @@ test('try obtainSchool', () => {
 
 test('try obtainRole', () => {
     const Intrn = new Intern('trialName',2, 'trialEmail', 'School');
-    expect(Intrn.obtainRole()).toEqual('Engineer');
+    expect(Intrn.obtainRole()).toEqual('Intern');
 });
