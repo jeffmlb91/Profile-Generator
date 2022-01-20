@@ -69,7 +69,7 @@ function initializeQuestion() {
                 response.email,
                 response.numeroBureau
             );
-            manager.push(GeneratedManager);
+            manager.push(GeneratedManager); // <--------
         });
 }
 
@@ -83,7 +83,7 @@ function engineerQues() {
             name: "engineerName",
             message: "Provide a name of the Engineer",
             validate: (engineerName) => {
-                if (engFullName && /^[a-zA-Z\s]+$/.test(engFullName)) {
+                if (engFullName && /^[a-zA-Z\s]+$/.test(engineerName)) {
                     return true;
                 } else {
                     return "Warning: You must enter a name of the Engineer";
@@ -116,7 +116,101 @@ function engineerQues() {
         },
         {
             type: "input",
-            name: "en"
-        }
+            name: "engineerGithub",
+            message: "Please provide a github account name for the engineer:",
+            validate: (engineerGithub) => {
+                if (engineerGithub) {
+                    return true;
+                } else {
+                    return "Warning: Invalid github account for the engineer.";
+                }
+            },
+        },
+        {
+            type: "list",
+            message: "Please make a selection of the type of team member you would like to add",
+            name: "memberAdded",
+            choices: ["Manager", "Intern", "Engineer"],
+        },  
     ])
+    .then((engineerResponse) => {
+        let createEngineer = new engineer(
+            engineerResponse.engineerName,
+            engineerResponse.engineerId,
+            engineerResponse.engineerEmail,
+            engineerResponse.engineerGithub
+        )
+        engineer.push(createEngineer); // <----------
+        
+    })
+}
+// Third initializing question regarding the Interns
+
+function internQuest() {
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "Provide a name of the Intern",
+            validate: (internName) => {
+                if (engFullName && /^[a-zA-Z\s]+$/.test(internName)) {
+                    return true;
+                } else {
+                    return "Warning: You must enter a name of the Intern";
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "internId",
+            message: "Please provide an ID for the intern",
+            validate: (internId) => {
+                if (isNaN(internId)) {
+                    return " Warning: A valid ID of the intern must be entered ";
+                } else {
+                    return true;
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "Please provide an email address for the intern",
+            validate: (internEmail) => {
+                if (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(internEmail)) {
+                    return true;
+                } else {
+                    return "Warning: Invalid email address for the intern";
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "Please provide a the school name of the intern:",
+            validate: (internSchool) => {
+                if (internSchool) {
+                    return true;
+                } else {
+                    return "Warning: Invalid school name for the intern.";
+                }
+            },
+        },
+        {
+            type: "list",
+            message: "Please make a selection of the type of team member you would like to add",
+            name: "memberAdded",
+            choices: ["Manager", "Intern", "Engineer"],
+        },  
+    ])
+    .then((internResponse) => {
+        let createEngineer = new intern(
+            internResponse.internName,
+            internResponse.internId,
+            internResponse.internEmail,
+            internResponse.internSchool
+        )
+        intern.push(createIntern); // <----------
+    });
 }
