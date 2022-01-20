@@ -102,6 +102,21 @@ function engineerQues() {
                 }
             },
         },
-        
+        {
+            type: "input",
+            name: "engineerEmail",
+            message: "Please provide an email address for the engineer",
+            validate: (engineerEmail) => {
+                if (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(engineerEmail)) {
+                    return true;
+                } else {
+                    return "Warning: Invalid email address for the engineer";
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "en"
+        }
     ])
 }
