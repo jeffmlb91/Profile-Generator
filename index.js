@@ -70,5 +70,38 @@ function initializeQuestion() {
                 response.numeroBureau
             );
             manager.push(GeneratedManager);
-        })
+        });
+}
+
+// Second initializing question regarding the Engineer
+
+function engineerQues() {
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            name: "engineerName",
+            message: "Provide a name of the Engineer",
+            validate: (engineerName) => {
+                if (engFullName && /^[a-zA-Z\s]+$/.test(engFullName)) {
+                    return true;
+                } else {
+                    return "Warning: You must enter a name of the Engineer";
+                }
+            },
+        },
+        {
+            type: "input",
+            name: "engineerId",
+            message: "Please provide an ID for the engineer",
+            validate: (engineerId) => {
+                if (isNaN(engineerId)) {
+                    return " Warning: A valid ID of the engineer must be entered ";
+                } else {
+                    return true;
+                }
+            },
+        },
+        
+    ])
 }
