@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const viewresult = require("./source/produceTeamDisplay");
 
 // The user will need to be prompt questions once the application is initialized
 // First initializing question regarding the Manager
@@ -11,7 +12,7 @@ function initializeQuestion() {
                 type: "input",
                 name: "name",
                 message: "Provide the name of the manager for the Team",
-                confirm: (name) => {
+                validate: (name) => {
                     if (name && /^[a-zA-Z0-9]+$/.test(name)) {
                         return true;
                     } else {
@@ -23,7 +24,7 @@ function initializeQuestion() {
                 type: "input",
                 name: "idNum",
                 message: "Provide an ID number for the employee",
-                confirm: (idNum) => {
+                validate: (idNum) => {
                     if (idNum === null) {
                         return "An ID number must be entered";
                     } else {
@@ -35,7 +36,7 @@ function initializeQuestion() {
                 type: "input",
                 name: "email",
                 message: "Provide an email address for the employee",
-                confirm: (email) => {
+                validate: (email) => {
                     if (/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
                         return true;
                     } else {
@@ -47,7 +48,7 @@ function initializeQuestion() {
                 type: "input",
                 name: "numeroBureau",
                 message: "Provide a number for the office",
-                confirm: (numeroBureau) => {
+                validate: (numeroBureau) => {
                     if (isNaN(numeroBureau)) {
                         return "A Valid number for the office must be provided";
                     } else {
@@ -70,6 +71,7 @@ function initializeQuestion() {
                 response.numeroBureau
             );
             manager.push(GeneratedManager); // <--------
+            memberCategory(response.memberCategory);
         });
 }
 
@@ -141,7 +143,7 @@ function engineerQues() {
             engineerResponse.engineerGithub
         )
         engineer.push(createEngineer); // <----------
-        
+        memberCategory(engineerResponse.memberCategory);
     })
 }
 // Third initializing question regarding the Interns
@@ -212,5 +214,26 @@ function internQuest() {
             internResponse.internSchool
         )
         intern.push(createIntern); // <----------
+        memberCategory(internResponse.memberCategory)
     });
 }
+
+function memberCategory(createdMember) {
+    if (createdMember == "Engineer") {
+        engineerQues()
+    } else if (createdMember == "Intern") {
+        internQuest();
+    } else {
+        producePrompt(manager, intern, engineer);
+    }
+}
+
+function producePrompt(manager, intern, engineer) {
+    file.writeFile("./dist/teamview.html", viewresult(manager, intern, engineer), "utf-8", (err) => {
+        if (err) {
+            return err;
+        }
+    });
+}
+
+initializeQuestion()
