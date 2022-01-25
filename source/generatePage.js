@@ -4,14 +4,14 @@ function boardManager(manager) {
     <div class="col-md-3">       
     <div class="card">
     <div class="car-title">
-    <p> ${manager[0].name}</p>
+    <p> ${manager.obtainName()}</p>
     <p> <i class="fas fa-mug-hot"></i> Manager</p>
     </div>
     <div class="card-body">
     <ul class="list-group">
-    <li class="list-group-item">ID: ${manager[0].id}</li>
-    <li class="list-group-item">Email: <a href="mailto:" ${manager[0].email}> ${manager[0].email}</a></li>
-    <li class="list-group-item">Office Number: ${manager[0].officeNum}</li>
+    <li class="list-group-item">ID: ${manager.obtainId()}</li>
+    <li class="list-group-item">Email: <a href="mailto:" ${manager.obtainEmail()}> ${manager.obtainEmail()}</a></li>
+    <li class="list-group-item">Office Number: ${manager.obtainOfficeNumber()}</li>
     </ul>
     </div>
     </div>
@@ -73,7 +73,7 @@ function boardIntern(intrn) {
 }
 // Export modules + Generate boards in front end
 
-module.exports = (manager, intrn, eng) => {
+module.exports = ({ engineer, intern, manager }) => {
 
     return `
         <!DOCTYPE html>
@@ -92,11 +92,11 @@ module.exports = (manager, intrn, eng) => {
         </header>
         <main class="container">
         <div class="row justify-content-center ">
-        ${boardManager(manager)} ${boardEngineer(eng)}
+        ${boardManager(manager)} ${boardEngineer(engineer)}
         </div>
         <br/><br/>
         <div class="row justify-content-center ">
-        ${boardIntern(intrn)}
+        ${boardIntern(intern)}
         </div>
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  
@@ -106,3 +106,5 @@ module.exports = (manager, intrn, eng) => {
     
     `
 }
+
+// refactor prompts ( remove class generation, at the begining create a team object and return the team object )
