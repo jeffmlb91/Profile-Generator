@@ -1,17 +1,18 @@
 // Declaring function for Manager board
 function boardManager(manager) {
-    return`
+  console.log("MANAGERRR", manager);
+  return `
     <div class="col-md-3">       
     <div class="card">
     <div class="car-title">
-    <p> ${manager.obtainName()}</p>
+    <p> ${manager.name.name}</p>
     <p> <i class="fas fa-mug-hot"></i> Manager</p>
     </div>
     <div class="card-body">
     <ul class="list-group">
-    <li class="list-group-item">ID: ${manager.obtainId()}</li>
-    <li class="list-group-item">Email: <a href="mailto:" ${manager.obtainEmail()}> ${manager.obtainEmail()}</a></li>
-    <li class="list-group-item">Office Number: ${manager.obtainOfficeNumber()}</li>
+    <li class="list-group-item">ID: ${manager.name.idNum}</li>
+    <li class="list-group-item">Email: <a href="mailto:" ${manager.name.email}> ${manager.name.email}</a></li>
+    <li class="list-group-item">Office Number: ${manager.name.officeNumber}</li>
     </ul>
     </div>
     </div>
@@ -20,62 +21,62 @@ function boardManager(manager) {
 }
 // Declaring function for Engineer board
 function boardEngineer(eng) {
+  console.log("ENGINEEEEER", eng);
+  let display = "";
 
-    let display = "";
-
-    for (let i = 0; i < eng.length; i++) {
-        display += `
+  for (let i = 0; i < eng.length; i++) {
+    display += `
         <div class="col-md-3">       
         <div class="card">
         <div class="car-title">
-        <p> ${eng[i].name}</p>
+        <p> ${eng[i].name.engineerName}</p>
         <p> <i class="fas fa-glasses"></i> Engineer</p>
         </div>
         <div class="card-body">
         <ul class="list-group">
-        <li class="list-group-item">ID: ${eng[i].id}</li>
-        <li class="list-group-item">Email: <a href="mailto:" +${eng[i].email}>${eng[i].email}</a></li>
-        <li class="list-group-item">GitHub: <a href="https://github.com/${eng[i].github}" target="_blank"> ${eng[i].github}</a></li>
+        <li class="list-group-item">ID: ${eng[i].id.internId}</li>
+        <li class="list-group-item">Email: <a href="mailto:" +${eng[i].name.engineerEmail}>${eng[i].name.engineerEmail}</a></li>
+        <li class="list-group-item">GitHub: <a href="https://github.com/${eng[i].name.engineerGithub}" target="_blank"> ${eng[i].name.engineerGithub}</a></li>
         </ul>
         </div>
         </div>
         </div>   
         `;
-    }
+  }
 
-    return display;
+  return display;
 }
 // Declaring function for Intern board
 function boardIntern(intrn) {
-    let display = "";
-    for (let i = 0; i < intrn.lenght; i++) {
-        display += `
+  console.log("INTERRRRRRN", intrn);
+  let display = "";
+  for (let i = 0; i < intrn.length; i++) {
+    display += `
         
         <div class="col-md-3">       
         <div class="card">
         <div class="car-title">
-        <p> ${intrn[i].name}</p>
+        <p> ${intrn[i].name.internName}</p>
         <p> <i class="fas fa-user-graduate"></i> Intern</p>
         </div>
         <div class="card-body">
         <ul class="list-group">
-        <li class="list-group-item">ID: ${intrn[i].id}</li>
-        <li class="list-group-item">Email:<a href="mailto:" +${intrn[i].email}> ${intrn[i].email}</a></li>
-        <li class="list-group-item">School: ${intrn[i].school}</li>
+        <li class="list-group-item">ID: ${intrn[i].name.internId}</li>
+        <li class="list-group-item">Email:<a href="mailto:" +${intrn[i].name.internEmail}> ${intrn[i].name.internEmail}</a></li>
+        <li class="list-group-item">School: ${intrn[i].name.internSchool}</li>
         </ul>
         </div>
         </div>
         </div> 
-        `
-    }
+        `;
+  }
 
-    return display;
+  return display;
 }
 // Export modules + Generate boards in front end
 
 module.exports = ({ engineer, intern, manager }) => {
-
-    return `
+  return `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -104,7 +105,7 @@ module.exports = ({ engineer, intern, manager }) => {
         </html>
     
     
-    `
-}
+    `;
+};
 
 // refactor prompts ( remove class generation, at the begining create a team object and return the team object )

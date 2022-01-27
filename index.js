@@ -29,7 +29,7 @@ function createTeam(teamInfo) {
   const fullTeamObject = {
     engineer: [],
     intern: [],
-    manager: undefined,
+    manager: [],
   };
   const engineerMembers = teamInfo.engineer;
   const internMembers = teamInfo.intern;
