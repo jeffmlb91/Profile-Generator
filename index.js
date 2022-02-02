@@ -50,7 +50,7 @@ function createTeam(teamInfo) {
 
 function writeFile(fileData) {
   return new Promise((resolve, reject) => {
-    fs.writeFile("./docs/viewteam.html", fileData, (err) => {
+    fs.writeFile("./dist/viewteam.html", fileData, (err) => {
       if (err) return reject(err);
 
       resolve({
