@@ -14,6 +14,7 @@ This project is a command line application which will help users generate a webp
 
 In order to run this application, user should use the command line and type `node index.js` and answer to the prompts listed.
 Please checkout the video as well:
+https://user-images.githubusercontent.com/66559059/152215183-72fab61d-7526-49fa-b0df-71554082f9b6.mov
 
 ## Credits
 
